@@ -1,14 +1,31 @@
-import React from 'react';
-import Footer from './Footer';
-import AddTodo from '../containers/AddTodo';
-import VisibleTodoList from '../containers/VisibleTodoList';
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import Footer from './Footer'
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
+import { fetchToDoListRequest } from '../actions';
 
-const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
-);
+class App extends Component {
 
-export default App;
+  componentDidMount() {
+    // fetchToDoListRequest();
+    // this.props.dispatch(fetchToDoListRequest())
+  }
+
+  render() {
+    return (
+      <div>
+        <AddTodo />
+        <VisibleTodoList />
+        <Footer />
+        <button onClick={() => this.props.dispatch(fetchToDoListRequest())}>Fetch next TODO</button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  todos: state.todos,
+});
+
+export default connect(mapStateToProps)(App);

@@ -5,7 +5,7 @@ describe('todo actions', () => {
     expect(actions.addTodo('Use Redux')).toEqual({
       type: 'ADD_TODO',
       id: 0,
-      text: 'Use Redux'
+      title: 'Use Redux'
     })
   })
 
